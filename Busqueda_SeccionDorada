@@ -1,0 +1,36 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def func(x):
+    u = (x**2) - (np.sin(x))
+    return u
+
+def busquedaSeccionDorada():
+    #Donde: a y b son intervalos entre el punto minimo
+    #t = tau constante, e = epsilon constante
+    a = 0.2
+    b = 0.6
+    t = 2 - 1.618033988
+    e = 1e-6
+    cont = 0
+    r = []
+    while(True):
+        #Calcular a1 y a2
+        alpha1 = a*(1 - t) + b*t
+        alpha2 = a*t + b*(1 - t) 
+        #Calcular f(alpha1) y f(alpha2)
+        fa1 = func(alpha1)
+        fa2 = func(alpha2)
+        if(fa1 > fa2):
+            a = alpha1
+        else:
+            b = alpha2
+        cont += 1
+        r.append([cont,alpha1,fa1])
+        print("Iteracion: {:02d} - x: {:.10f} | y: {:.10f}".format(cont, alpha1, fa1))
+        if(np.abs(fa1 - fa2) < e):
+            print("-------------------------------------------------------")
+            print("Iteracion: {:02d} - x: {:.10f} | y: {:.10f}".format(cont, alpha1, fa1))
+            break
+
+busquedaSeccionDorada()
