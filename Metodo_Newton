@@ -1,0 +1,49 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def d(x):
+    u = (x**2) - (np.sin(x))
+    return u
+
+def d1(x):
+    u = (2*x) - (np.cos(x))
+    return u
+
+def d2(x):
+    u = 2 + (np.sin(x))
+    return u
+
+def metodoNewton():
+    a = 0.2 
+    b = 0.6
+    x = 0.6
+    epsilon = 0.001
+    
+    cont = 0
+    vec = []
+    
+    while True:
+        # Calculo de f'(x) y f''(x)
+        d = d1(x)
+        dx = d2(x)
+        
+        xprev = x
+        x = xprev - (d/dx)
+        u = d1(x)
+        
+        
+        cont += 1
+        vec.append([cont, x, u])
+        
+        print("It: {:02d} - x: {:.10f} - y: {:.10f}".format(cont, x, u))
+        
+        if(np.abs(x - xprev) <= epsilon):
+            print("----------------------------------------------------------------")
+            print("It: {:02d} - x: {:.10f} - y: {:.10f}".format(cont, x, u))
+            break
+
+metodoNewton()
+print("----------------------------------------------------------------")
+print("f(x)="+str(d(0.45)))
+print("f´(x)="+str(d1(0.45)))
+print("f´´(x)="+str(d2(0.45)))
