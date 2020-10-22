@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x): 
+    return (x**2) - (np.sin(x))
+
+x = np.linspace(0, 1, 19)
+aux = 0
+for z in x:
+    aux += 1
+    print("x")
+    print(x[aux-1])
+    print("f(x)")
+    print(f(z))
+    print("___________________________________")
+       
+print("Teniendo lo siguiente podemos ver que el punto de inflexion no es ni un minimo ni un maximo ya que:")
+print("Coordenadas punto Minimo:")
+print("x: 0.45") 
+print("f(x): " + str(f(0.45)))
+print("El maximo no esta dentro del intervalo [0,1]")
+f2 = np.vectorize(f) 
+y = f2(x)
+plt.plot(x, y,'b')
+plt.plot(0.45,f(0.45),'ro',label='punto fijo')
+plt.grid()
+plt.show()
